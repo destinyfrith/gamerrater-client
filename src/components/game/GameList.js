@@ -4,6 +4,7 @@
 import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 import { getGames } from "./GameManager.js"
+import { Link } from "react-router-dom"
 
 export const GameList = (props) => {
     const [games, setGames] = useState([])
@@ -33,13 +34,10 @@ export const GameList = (props) => {
             {
                 games.map(game => {
                     return <section key={`game--${game.id}`} className="game">
-                        <div className="game__title">{game.title}</div>
-                        <div className="game__designer">Designer is {game.designer}</div>
-                        <div className="game__year">Released in {game.year_released}</div>
-                        <div className="game__players">{game.number_of_players} players needed</div>
-                        <div className="game__time">This game takes {game.time_to_play}</div>
-                        <div className="game__age">Recommended age minimum: {game.year_released}</div>
-                        <div className="game__categories">Catgories: {game.category}</div>
+                        <div>
+                            <Link className="nav_link" to={`/games/${game.id}`}>
+                                {game.title}
+                            </Link></div>
                     </section>
                 })
             }
